@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Lista ore E-Agle TRT</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <img class="brand" src="white_brand.svg" alt="E-Agle TRT" />
+    <h1>Lista ore</h1>
+  </header>
+
+  <main class="page">
+    <!-- Periodo -->
+    <section class="panel" aria-labelledby="period-heading">
+      <h2 id="period-heading" class="panel-title">Periodo</h2>
+
+      <div class="period-row">
+        <div class="segmented" role="group" aria-label="Tipo di periodo">
+          <button type="button" class="segment" data-view="daily" aria-pressed="true">Giorno</button>
+          <button type="button" class="segment" data-view="monthly" aria-pressed="false">Mese</button>
+          <button type="button" class="segment" data-view="yearly" aria-pressed="false">Anno accademico</button>
+        </div>
+
+        <div class="period-picker">
+          <button type="button" class="icon-btn" id="prev-period" aria-label="Periodo precedente">&#8249;</button>
+
+          <label class="visually-hidden" for="day-select">Giorno</label>
+          <input type="date" class="field" id="day-select" data-view-input="daily" />
+
+          <label class="visually-hidden" for="month-select">Mese</label>
+          <input type="month" class="field" id="month-select" data-view-input="monthly" hidden />
+
+          <label class="visually-hidden" for="year-select">Anno accademico</label>
+          <select class="field" id="year-select" data-view-input="yearly" hidden></select>
+
+          <button type="button" class="icon-btn" id="next-period" aria-label="Periodo successivo">&#8250;</button>
+          <button type="button" class="btn btn-ghost" id="today-btn">Oggi</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filtri -->
+    <section class="panel" aria-labelledby="filters-heading">
+      <div class="panel-head">
+        <h2 id="filters-heading" class="panel-title">Filtri</h2>
+        <button type="button" class="link-btn" id="reset-filters">Reimposta filtri</button>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">
+          <span>Area</span>
+          <span class="filter-actions">
+            <button type="button" class="link-btn" data-select-all="area">Tutte</button>
+            <button type="button" class="link-btn" data-select-none="area">Nessuna</button>
+          </span>
+        </div>
+        <div class="chips" id="area-filters" role="group" aria-label="Filtra per area"></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">
+          <span>Ruolo</span>
+          <span class="filter-actions">
+            <button type="button" class="link-btn" data-select-all="role">Tutti</button>
+            <button type="button" class="link-btn" data-select-none="role">Nessuno</button>
+          </span>
+        </div>
+        <div class="chips" id="role-filters" role="group" aria-label="Filtra per ruolo"></div>
+      </div>
+
+      <div class="filter-row">
+        <div class="search">
+          <label class="visually-hidden" for="name-search">Cerca per nome o e-mail</label>
+          <input type="search" id="name-search" class="field" placeholder="Cerca per nome o e-mail…" autocomplete="off" />
+        </div>
+
+        <label class="switch">
+          <input type="checkbox" id="active-only" />
+          <span class="switch-track" aria-hidden="true"></span>
+          Solo membri attivi
+        </label>
+
+        <label class="switch">
+          <input type="checkbox" id="group-by-area" />
+          <span class="switch-track" aria-hidden="true"></span>
+          Raggruppa per area
+        </label>
+      </div>
+    </section>
+
+    <!-- Risultati -->
+    <section aria-labelledby="results-heading">
+      <div class="results-head">
+        <h2 id="results-heading" class="results-title">
+          Classifica <span class="results-period" id="period-label"></span>
+        </h2>
+        <button type="button" class="btn btn-primary" id="export-csv" disabled>Esporta CSV</button>
+      </div>
+
+      <dl class="stats" id="stats" hidden>
+        <div class="stat"><dt>Membri</dt><dd id="stat-members">–</dd></div>
+        <div class="stat"><dt>Ore totali</dt><dd id="stat-total">–</dd></div>
+        <div class="stat"><dt>Media per membro</dt><dd id="stat-avg">–</dd></div>
+      </dl>
+
+      <div id="leaderboard" class="leaderboard" aria-live="polite" aria-busy="true">
+        <p class="status">Caricamento dati…</p>
+      </div>
+    </section>
+  </main>
+
+  <template id="entry-template">
+    <li class="entry">
+      <span class="entry-rank"></span>
+      <div class="entry-main">
+        <div class="entry-name-row">
+          <span class="entry-name"></span>
+          <span class="entry-tags"></span>
+        </div>
+        <span class="entry-email"></span>
+        <div class="entry-bar" aria-hidden="true"><span></span></div>
+      </div>
+      <span class="entry-hours"></span>
+    </li>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
