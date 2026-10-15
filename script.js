@@ -13,7 +13,7 @@ const AREAS = ["SW", "HW", "MT", "MGT", "DMT", "CM"];
 const UNKNOWN_AREA = "ND";
 
 // Ruoli filtrabili. Chi non ha nessuno di questi ruoli finisce in "Altro".
-const ROLES = ["CT", "PM", "RP"];
+const ROLES = ["CT", "PM"];
 const OTHER_ROLE = "ALTRO";
 // Campo del membro (da /members) con i ruoli: array, es. ["CT", "PM"].
 const ROLE_FIELD = "roles";
