@@ -27,7 +27,7 @@ const SEARCH_DEBOUNCE_MS = 150;
 // ---------------------------------------------------------------------------
 
 const state = {
-  view: "daily",
+  view: "monthly",
   groupByArea: false,
   activeOnly: false,
   search: "",
